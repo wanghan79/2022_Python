@@ -1,38 +1,62 @@
-import string
 import random
-
-para = {"num": 5, "struct": {"int": {"datarange": (0, 10000)}, "float": {"datarange": (0, 10000)},
-                             "str": {"datarange": string.ascii_uppercase, "len": 50}}}
-para = {"num": 5, "struct": {"int": {"datarange": (0, 100)}, "float": {"datarange": (0, 10000)},
-                             "str": {"datarange": string.ascii_uppercase, "len": 50}}}
-
-
-def structDataSampling(**kwargs):
-    """
-
-    :param kwargs:
-    :return:
-    """
+import string
+def generateRandom(**kargs):
     result = list()
-    for index in range(0, kwargs['num']):
+    num = kargs["num"]
+    struct = kargs["struct"]
+    for i in range(num):
         element = list()
-        for key, value in kwargs['struct'].items():
+        for key, val in struct.items():
             if key == "int":
-                it = iter(value['datarange'])
-                tmp = random.randint(next(it), next(it))
+                it = iter(val["range"])
+                element.append(random.randint(next(it), next(it)))
             elif key == "float":
-                it = iter(value['datarange'])
-                tmp = random.uniform(next(it), next(it))
-            elif key == "str":
-                it = iter(value['datarange'])
-                tmp = ''.join(random.SystemRandom().choice(value['datarange']) for _ in range(8))
+                it = iter(val["range"])
+                element.append(random.uniform(next(it), next(it)))
+            elif key =="str":
+                strRange = val["range"]
+                strLength = val["length"]
+                string = ""
+                for j in range(strLength):
+                    string+=random.choice(strRange)
+                element.append(string)
             else:
-                break
-            element.append(tmp)
+                element.append("未知类型")
         result.append(element)
     return result
+argument = {"num":5, "struct":{"int":{"range":(10,20)}, "float":{"range":(100,200)}, "str":{"range":string.ascii_uppercase, "length":10}}}
 
+# ans = generateRandom(**argument)
+# for elem in ans:
+#     print(elem)
 
-result = structDataSampling(**para)
-for item in result:
-    print(item)
+with open("myStruct.txt", "r") as f:
+    structText = f.readlines()
+num = int(structText[0].split()[0])
+cin = {}
+cin["num"] = num
+struct = {}
+for line in structText:
+    words = line.split()
+    dataType = words[0]
+    if dataType == "int":
+        info = {}
+        left = int(words[1]); right = int (words[2])
+        info["range"] = (left, right)
+        struct["int"] = info
+    elif dataType == "float":
+        info = {}
+        left = float(words[1]); right = float(words[2])
+        info["range"] = (left, right)
+        struct["float"] = info
+    elif dataType == "str":
+        info = {}
+        info["range"] = words[1]
+        info["length"] = int(words[2])
+        struct["str"] = info
+    else:
+        continue
+cin["struct"] = struct
+ans = generateRandom(**cin)
+for elem in ans:
+    print(elem)

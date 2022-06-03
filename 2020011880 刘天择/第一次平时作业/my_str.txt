@@ -1,0 +1,31 @@
+with open("my_str.txt", "r") as f:
+    structText = f.readlines()
+num = int(structText[0].split()[0])
+cin = {}
+cin["num"] = num
+struct = {}
+for line in structText:
+    words = line.split()
+    dataType = words[0]
+    if dataType == "int":
+        info = {}
+        left = int(words[1]); right = int (words[2])
+        info["range"] = (left, right)
+        struct["int"] = info
+    elif dataType == "float":
+        info = {}
+        left = float(words[1]); right = float(words[2])
+        info["range"] = (left, right)
+        struct["float"] = info
+    elif dataType == "str":
+        info = {}
+        info["range"] = words[1]
+        info["length"] = int(words[2])
+        struct["str"] = info
+    elif dataType == "bool":
+        info = {}
+        info["num"] = int(words[1])
+        struct["bool"] = info
+    else:
+        continue
+cin["struct"] = struct
