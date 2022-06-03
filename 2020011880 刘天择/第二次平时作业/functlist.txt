@@ -1,4 +1,0 @@
-functA
-functB
-functC
-functD
