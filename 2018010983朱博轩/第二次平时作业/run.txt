@@ -1,0 +1,6 @@
+funcA
+funcD
+funcZ
+funcB
+out | test
+add | 2 | 3

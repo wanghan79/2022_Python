@@ -1,0 +1,10 @@
+{
+  "type": "list",
+  "range": 2,
+  "struct": [
+    {
+      "type": "int",
+      "range": [0, 1]
+    }
+  ]
+}
