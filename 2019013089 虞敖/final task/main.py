@@ -59,7 +59,7 @@ def get_MCC_simu(**kwargs) -> list:
 
 
 num = 1000
-random_para = {"num": num, "struct": {"bool": {"num": 2}}}
+random_para = {"num": num, "struct": {"bool": {"num": 2}}} #
 
 get_ACC_simu(**random_para)
 get_MCC_simu(**random_para)
