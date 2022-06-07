@@ -1,0 +1,1 @@
+{"float":{"datarange":(0,10000)},"str":{"datarange":string.ascii_letters+string.digits,"len":10}}
