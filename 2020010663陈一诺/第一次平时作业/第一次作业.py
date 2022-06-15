@@ -15,8 +15,7 @@ def structDataSampling(*args, **kwargs):
                 tmp = random.uniform(next(it), next(it))
             elif key == "str":
                 tmp = ''.join(random.SystemRandom().choice(value['datarange']) for word in range(value['len']))
-            else:
-
+            else
                 break
             element.append(tmp)
         result.append(element)
