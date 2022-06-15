@@ -37,8 +37,7 @@ class Random:
 
 def decorate(flag):
     def decorator(func):
-        wraps(func)
-
+        @wraps(func)
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             total = len(result)
