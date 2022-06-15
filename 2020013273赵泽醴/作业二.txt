@@ -1,0 +1,37 @@
+import myfuc.func as func
+
+def txtFileReader(file):
+    a=[]
+    with open(file) as f:
+        for line in f:
+            a.append(line)
+    f.close()
+    return a
+funcsname =  txtFileReader("config.txt")
+def callPackageFunc(funcname:str):
+    for fun in funcname:
+        eval(fun)
+
+callPackageFunc(funcsname)
+
+
+config.txt
+func.funcA()
+func.funcB()
+func.funcC()
+func.funcD()
+
+
+
+myfuc.py
+def funcA():
+    print("functA is being called")
+
+def funcB():
+    print("functB is being called")
+
+def funcC():
+    print("functC is being called")
+
+def funcD():
+    print("functD is being called")
