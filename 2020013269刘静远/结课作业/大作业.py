@@ -25,7 +25,7 @@ def Result(flag):
                 print("ACC : %f" % acc)
             elif flag == "MCC":
                 denominator = math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
-                if (denominator == 0):
+                if(denominator == 0):
                     denominator = 1
                 mcc = (TP * TN - FP * FN) / denominator
                 print("MCC : %f" % mcc)
@@ -35,13 +35,9 @@ def Result(flag):
         return wrapper
     return decorator
 
-@Result("MCC")
-@Result("ACC")
-
-def Structdatasampling(**kargs):
-    result = list()
-    num = kargs["num"]
-    struct = kargs["struct"]
+def Structdatasampling(*args, **kwargs):
+    num = kwargs["num"]
+    struct = kwargs["struct"]
     for index in range(num):
         element = list()
         for key, val in struct.items():
@@ -63,11 +59,19 @@ def Structdatasampling(**kargs):
                     element.append(random.choice((True, False)))
             else:
                 element.append("未知类型")
-        result.append(element)
-    return result
+        yield element
 
 
-argument = {"num":10000, "struct":{"bool":{"num": 5}}}
-resultList = Structdatasampling(**argument)
+@Result("MCC")
+@Result("ACC")
+def Randoms(*args, **kwargs):
+    generator = Structdatasampling(*args, **kwargs)
+    resultList = []
+    for element in generator:
+        resultList.append(element)
+    return resultList
 
-
+argument = {"num":10, "struct":{"bool":{"num": 2}}}
+resultList = Randoms(**argument)
+for elem in resultList:
+    print(elem)
