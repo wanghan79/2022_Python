@@ -1,0 +1,3 @@
+funcs.funcA()
+funcs.funcB()
+funcs.funcC()
