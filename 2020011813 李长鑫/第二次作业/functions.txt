@@ -1,0 +1,4 @@
+fc.funcB()
+fc.funcA()
+fc.funcC()
+fc.funcD(5)
