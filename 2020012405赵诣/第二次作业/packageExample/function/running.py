@@ -1,5 +1,5 @@
 from packageExample.funlib.func import *
-a=open("zhutouhandi.txt")
+a=open("second.txt")
 #单行
 # str=a.readline()
 # eval(str+"()")

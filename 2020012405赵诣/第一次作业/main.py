@@ -26,7 +26,7 @@ def structDataSampling(**kwargs):
             element.append(tmp)
         result.append(element)
     return result
-a=open("handizhu.txt")
+a=open("first.txt")
 parm=eval(a.read())
 result=structDataSampling(**parm)
 for item in result:
