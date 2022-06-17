@@ -36,4 +36,4 @@ def homework():
     for item in result:
         print(item)
 
-# homework()
+homework()
