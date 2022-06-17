@@ -88,7 +88,7 @@ def MCCGenerateRandomData(**kwargs):
 
 
 mcc_struct = {'count': 10000, 'num': 2, 'struct': {'bool': 'random.choice([True, False])'}}
-mcc = MCCGenerateRandomData(**acc_struct)
+mcc = MCCGenerateRandomData(**mcc_struct)
 print(mcc)
 
 """
