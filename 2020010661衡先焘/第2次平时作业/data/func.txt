@@ -1,0 +1,3 @@
+myFunc.myFuncA()
+myFunc.myFuncB()
+myFunc.myFuncB()
