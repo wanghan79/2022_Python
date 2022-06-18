@@ -1,0 +1,2 @@
+funcs.funcB()
+funcs.funcA()
