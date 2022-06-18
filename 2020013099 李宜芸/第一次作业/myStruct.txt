@@ -1,0 +1,8 @@
+{
+    "num": 5,
+    "struct": {
+        "int": {"range": (0, 100)},
+         "float": {"range": (0, 10000)},
+        "str": {"range": string.ascii_uppercase, "len": 50}
+    }
+}

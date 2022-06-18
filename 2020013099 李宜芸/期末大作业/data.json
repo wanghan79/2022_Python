@@ -1,0 +1,1 @@
+{"num": 5, "struct": {"predict": {"datarange": [0, 1]}, "str": {"datarange": "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "len": 50}, "true": {"datarange": [0, 1]}}}
