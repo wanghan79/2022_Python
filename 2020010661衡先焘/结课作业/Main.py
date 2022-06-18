@@ -23,7 +23,18 @@ def mcc(num, struct):
 """
 这里不要对一个函数进行两个修饰器修饰。
 yield返回的对象遍历完就没了，想要从新获取遍历头节点，就只有从新来遍历。
-所以，像同时做ACC和MCC应该把代码写在一起，这样可以减少一次遍历，提高运行效率
+所以，像同时做ACC和MCC应该把代码写在一起，这样可以减少一次遍历，提高运行效率.
+
+@MCC.Decorator
+def getRandoms(**kwargs):
+    generator = Random(**kwargs)
+    resultList = []
+    for element in generator:
+        resultList.append(element)
+    return resultList
+    
+像上面这种方式，我个人认为是不妥善的，yield的目的就是为了减少内存消耗，
+而这样还是去把迭代的东西加在一起，扩大了内存的使用，违背了使用yield的初衷！
 """
 
 

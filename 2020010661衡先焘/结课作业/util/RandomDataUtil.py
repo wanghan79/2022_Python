@@ -65,7 +65,7 @@ def generateStruct(path="../data/test.txt"):
             cin["tuple"] = info
         else:
             continue
-    logger.info("随机结构: " + str(cin))
+    logger.info("随机结构: " + str(cin) + "\n")
     return cin
 
 
