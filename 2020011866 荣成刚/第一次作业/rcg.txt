@@ -1,0 +1,4 @@
+num 15
+int datarange 0 100
+float datarange -50 50
+str datarange ABCDEFGIJKLNOSADSIHZXY length 10
