@@ -1,0 +1,2 @@
+funcA()
+funcB()
