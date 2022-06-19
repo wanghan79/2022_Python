@@ -49,5 +49,8 @@ The easiest way to install the required packages:
    
 ---
 ## Author
-Ivan Li
-liwenhao0504@163.com
+Name: Ivan Li
+
+Blog: [Ivan's blog](https://ivan020121.github.io/)
+
+Email: liwenhao0504@163.com
