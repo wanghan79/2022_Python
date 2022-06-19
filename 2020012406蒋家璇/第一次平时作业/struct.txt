@@ -1,0 +1,3 @@
+{"num": 5, "struct": {"int": {"dataRange": (0, 100)}, "float": {"dataRange": (0, 100)}, "str": {"dataRange": string.ascii_uppercase, "len": 50}, "bool": {"dataRange": (True, False), "cnt": 2}}}
+{"num": 5, "struct": {"int": {"dataRange": (0, 1000)}, "float": {"dataRange": (0, 1000)}, "str": {"dataRange": string.ascii_uppercase, "len": 50}, "bool": {"dataRange": (True, False), "cnt": 3}}}
+{"num": 5, "struct": {"int": {"dataRange": (0, 10000)}, "float": {"dataRange": (0, 10000)}, "str": {"dataRange": string.ascii_lowercase, "len": 50}, "bool": {"dataRange": (True, False), "cnt": 4}}}
