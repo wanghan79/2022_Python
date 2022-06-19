@@ -1,0 +1,3 @@
+int datarange 0 100
+float datarange -100 100
+str datarange ABCDEFGIJKLNOSADSIHCOZ len 100
