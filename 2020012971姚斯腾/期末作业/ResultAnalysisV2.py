@@ -71,7 +71,7 @@ def MCC():
         @wraps(func)
         def wrapper(*args, **kwargs):
             dataList = func(*args, **kwargs)
-            print("MCC : {:.2%}".format((TP * TN - TP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))))
+            print("MCC : {:.2%}".format((TP * TN - FP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))))
             return dataList
 
         return wrapper
