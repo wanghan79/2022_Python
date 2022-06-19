@@ -1,4 +1,4 @@
-from funcs import funcs
+from func import funcs
 
 
 def getfunctions(path):
