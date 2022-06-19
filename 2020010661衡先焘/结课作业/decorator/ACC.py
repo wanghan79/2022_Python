@@ -30,11 +30,11 @@ class Decorator(BaseCC):
             try:
                 self.struct = next(structTmp)
                 core_value = self.__core__()
-                logger.info("第{:}波".format(flag) + "数据 --> Accuracy: {:.2%}".format(core_value))
+                logger.info("第{:}波".format(flag) + "数据 --> ACC: {:.2%}".format(core_value))
                 flag += 1
             except StopIteration:
                 total_core_value = self.__calculate_total__()
-                logger.info("所有数据一共有的 --> Accuracy: {:.2%}\n".format(total_core_value))
+                logger.info("所有数据一共有的 --> ACC: {:.2%}\n".format(total_core_value))
                 break
         # 此外返回与不返回没什么影响
         return structTmp
@@ -58,3 +58,29 @@ class Decorator(BaseCC):
         用已经计算并存储好的数据，进行总的MCC计算
         """
         return self.__tp_tn / self.__total_num
+
+
+class OldDecorator:
+    def __init__(self, func):
+        """
+        这是未使用yield的ACC修饰器，用于去对比上面内存使用
+        :param func: 修饰的函数
+        """
+        self._func = func
+        self.struct = None
+
+    def __call__(self, *args, **kwargs):
+        self.struct = self._func(*args, **kwargs)
+        core_value = self.__core__()
+        print("ACC: {:.2%}".format(core_value))
+        # 仍然返回传入的struct，以便结构体再次被其他修饰器修饰。
+        return self.struct
+
+    def __core__(self):
+        data_list = list()
+        tp_tn = 0
+        for i in self.struct:
+            data_list.append(not i[0] ^ i[1])
+            if not i[0] ^ i[1]:
+                tp_tn += 1
+        return tp_tn / len(self.struct)

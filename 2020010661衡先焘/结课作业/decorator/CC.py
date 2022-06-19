@@ -37,7 +37,7 @@ class Decorator(BaseCC):
                 self.struct = next(structTmp)
                 core_acc_value = self.__core_acc__()
                 core_mcc__value = self.__core_mcc__()
-                logger.info("第{:}波".format(flag) + "数据 --> Accuracy: {:.2%}".format(core_acc_value))
+                logger.info("第{:}波".format(flag) + "数据 --> ACC: {:.2%}".format(core_acc_value))
                 logger.info("第{:}波".format(flag) + "数据 --> MCC: {:.2%}".format(core_mcc__value))
                 flag += 1
             except StopIteration:
