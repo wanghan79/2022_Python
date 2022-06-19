@@ -1,0 +1,4 @@
+100
+int 0 1000
+float 0 100
+string ASDFGHJKL123!@#$%^&*zxcvbnm 10
