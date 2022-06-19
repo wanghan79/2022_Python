@@ -1,0 +1,4 @@
+5
+int 0 100
+float 0 10000
+str abcdefghijklmnopqrstuvwxyz 30
