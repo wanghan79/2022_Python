@@ -1,2 +1,0 @@
-{"num":7,
-"struct":{"bool":{"num":2}}}

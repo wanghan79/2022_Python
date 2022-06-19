@@ -1,4 +1,0 @@
-functionA
-functionB
-functionC
-functionD

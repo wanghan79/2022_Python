@@ -1,5 +1,0 @@
-import funclib.funcs as funcs
-funcs.funcA()
-funcs.funcB()
-funcs.funcC()
-funcs.funcD()

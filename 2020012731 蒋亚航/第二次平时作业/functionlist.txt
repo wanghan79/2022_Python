@@ -1,4 +1,0 @@
-py_functions.function1()
-py_functions.function2()
-py_functions.function3()
-py_functions.function4()

@@ -1,4 +1,0 @@
-10
-int 10 20
-float 100 200
-str qwertyuiQWERTYUI!@#$%^&*() 10

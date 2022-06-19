@@ -1,4 +1,0 @@
-funA
-funB
-funC
-funD

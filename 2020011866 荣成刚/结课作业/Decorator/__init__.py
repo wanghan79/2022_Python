@@ -1,2 +1,0 @@
-class Decorator:
-    pass

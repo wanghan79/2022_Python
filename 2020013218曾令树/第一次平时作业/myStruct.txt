@@ -1,4 +1,0 @@
-5
-int 10 20
-float 100 200
-str abcdefgABCDEFG1234567890!@#$%^&*()_+ 30

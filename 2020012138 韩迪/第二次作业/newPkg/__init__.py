@@ -1,1 +1,0 @@
-print("INFO: YOU HAVE IMPORTED PACKAGE newPkg! ")

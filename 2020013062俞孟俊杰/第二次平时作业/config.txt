@@ -1,4 +1,0 @@
-func.funcA()
-func.funcB()
-func.funcC()
-func.funcD()

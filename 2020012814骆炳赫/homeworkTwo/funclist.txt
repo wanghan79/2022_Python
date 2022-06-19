@@ -1,2 +1,0 @@
-funcs.funcA()
-funcs.funcB()

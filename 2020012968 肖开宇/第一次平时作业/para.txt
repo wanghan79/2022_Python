@@ -1,1 +1,0 @@
-{"num":10,"struct":{"int":{"datarange":(0,10)},"float":{"datarange":(0,1000)},"str":{"datarange":string.ascii_uppercase,"len":10}}}
