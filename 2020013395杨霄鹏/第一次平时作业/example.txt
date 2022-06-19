@@ -1,0 +1,1 @@
+{ "int": {"datarange": (0, 50)}, "float": {"datarange": (-50, 100)}, "str": {"datarange": string.ascii_uppercase, "len": 30}}
