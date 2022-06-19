@@ -1,0 +1,4 @@
+string 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789@$#_%? 6
+int 1 100
+float 20 300
+bool
