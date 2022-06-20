@@ -64,5 +64,5 @@ def Random_Bool(*args, **kwargs):
 
 
 Random_Bool(**para)
-# print(Random_ACC(**para))
+# print(Random_Bool(**para))
 
