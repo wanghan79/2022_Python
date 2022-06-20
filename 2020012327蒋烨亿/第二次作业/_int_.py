@@ -1,4 +1,4 @@
-import funcs.functions as funcs
+from funcs import functions as funcs
 
 def readfile(file):
     list = []
