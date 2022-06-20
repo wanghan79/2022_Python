@@ -45,20 +45,9 @@ class Random:
         for i in range(self.num):
             element = list()
             for key,value in self.struct.items():
-                if key == "int":
-                    it = iter(value['datarange'])
-                    tmp = random.randint(next(it),next(it))
-                    element.append(tmp)
-                elif key == "float":
-                    it = iter(value['datarange'])
-                    tmp = random.uniform(next(it),next(it))
-                    element.append(tmp)
-                elif key == "bool":
+                if key == "bool":
                     for ith in range(value["datarange"]):
                         element.append(random.choice((1, 0)))
-                elif key == "str":
-                    tmp = ''.join(random.SystemRandom().choice(value['datarange']) for _ in range(0,value['len']) )
-                    element.append(tmp)
                 else :
                     break
             result.append(element)
