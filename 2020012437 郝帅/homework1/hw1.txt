@@ -1,1 +1,8 @@
-
+{
+    "num":5,
+    "struct":{
+        "int":{"Data":(0,100)},
+        "float":{"Data":(0,100)},
+        "str":{"Data":string.ascii_letters,"cnt":10}
+    }
+}
