@@ -79,8 +79,8 @@ do.py  含有2个函数
   		# __call__(self, **kwargs) 在函数内部调用func，将kwargs传入func
   		# dataGenerate(self,data) 由于yield返回的是可迭代对象，所以我们无法多次使用数据，故需要先迭代可迭代对象将数据保存起来
       	        # ACC(self, TP, TN, FP, FN) 计算ACC
-                 # MCCMCC(self, TP, TN, FP, FN) 计算MCC
-        * structDataSampling(**kwargs) 随机数据结构生成器
+                  # MCCMCC(self, TP, TN, FP, FN) 计算MCC
+         * structDataSampling(**kwargs) 随机数据结构生成器
   ```
 
   
