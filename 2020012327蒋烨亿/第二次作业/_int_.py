@@ -2,10 +2,10 @@ from funcs import functions as Funcs
 
 def readfile(file):
     list = []
-    with open(file) as f:
-        for line in f:
+    with open(file) as a:
+        for line in a:
             list.append(line.strip())
-    f.close()
+    a.close()
     return list
 
 funcsnames = readfile("name.txt")
