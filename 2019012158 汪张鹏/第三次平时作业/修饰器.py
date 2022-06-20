@@ -1,77 +1,67 @@
 import random
-from math import sqrt
+import math
 from functools import wraps
 
-#ACC
-def ACC(decr):
-    def calc(func):
-        @wraps(func)
-        def wrapper(*args,**kwargs):
-            count = 0
-            res = func(*args,**kwargs)
-            all = len(res)
-            for date in res:
-                if date[0] == date[1]:
-                    count +=1
-            acc = count / all
-            print("ACC : {}".format(acc))
-            return res
-        return wrapper
-    return calc
-
-#MCC
-def MCC(decr):
-    def calc(func):
-        @wraps(func)
-        def wrapper(*args,**kwargs):
-            res = func(*args,**kwargs)
-            TP = FP = FN = TN = 0
-            for date in res:
-                if (date[0] == False):
-                    if (date[1] == False): #0 0
-                        TN += 1
-                    elif (date[1] == True): #0 1
-                        FN += 1
-                elif (date[0] == True):
-                    if (date[1] == False): #1 0
-                        FP += 1
-                    elif (date[1] == True): #1 1
-                        TP += 1
-            mcc = (TP * TN - FP * FN) / sqrt((TP + FP) * (TP + FP) * (TN + FP) * (TN + FN))
-            print("MCC : {}".format(mcc))
-            return res
-        return wrapper
-    return calc
-
-@ACC("ACC")
-@MCC("MCC")
-def structDateSampling(**kwargs):
-    result = list()
-    for index in range(0, kwargs['num']):
-        element = list()
-        for key, value in kwargs['struct'].items():
-            if key == "int":
-                it = iter(value['datarange'])
-                tmp = random.randint(next(it), next(it))
-                element.append(tmp)
-            elif key == "float":
-                it = iter(value['datarange'])
-                tmp = random.uniform(next(it), next(it))
-                element.append(tmp)
-            elif key == "str":
-                tmp = ''.join(random.SystemRandom().choice(value['datarange']) for _ in range(value['len']))
-                element.append(tmp)
-            elif key == "bool":
-                for i in range(value["count"]):
-                    tmp = random.randint(0,1)
-                    element.append(tmp)
+def decorateWith(flag):
+    def decorator(func):
+        wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            total = len(result)
+            TP = TN = FP = FN = 0
+            for e in result:
+                if (e[0] is True) and (e[1] is True):
+                    TP += 1
+                elif (e[0] is True) and (e[1] is False):
+                    FN += 1
+                elif (e[0] is False) and (e[1] is True):
+                    FP += 1
+                elif (e[0] is False) and (e[1] is False):
+                    TN += 1
+                else:
+                    pass
+            if flag == "ACC":
+                acc = (TP + TN) / total
+                print("ACC : %f" % acc)
+            elif flag == "MCC":
+                mcc = (TP * TN - FP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
+                print("MCC : %f" % mcc)
             else:
-                break
+                pass
+            return result
+        return wrapper
+    return decorator
+
+@decorateWith("MCC")
+@decorateWith("ACC")
+def generateRandom(**kargs):
+    result = list()
+    num = kargs["num"]
+    struct = kargs["struct"]
+    for i in range(num):
+        element = list()
+        for key, val in struct.items():
+            if key == "int":
+                it = iter(val["range"])
+                element.append(random.randint(next(it), next(it)))
+            elif key == "float":
+                it = iter(val["range"])
+                element.append(random.uniform(next(it), next(it)))
+            elif key =="str":
+                strRange = val["range"]
+                strLength = val["length"]
+                string = ""
+                for j in range(strLength):
+                    string+=random.choice(strRange)
+                element.append(string)
+            elif key == "bool":
+                for ith in range(val["num"]):
+                    element.append(random.choice((True, False)))
+            else:
+                element.append("未知类型")
         result.append(element)
     return result
 
-def apply():
-    para = {"num": 10000, "struct": {"bool": {"count": 2}} }
-    format(structDateSampling(**para))
 
-apply()
+argument = {"num":10000, "struct":{"bool":{"num":2}}}
+resultList = generateRandom(**argument)
