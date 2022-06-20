@@ -1,7 +1,9 @@
 import math
 import random
 from functools import wraps
-import tracemalloc
+import cProfile
+import snakeviz.cli as cli
+import pstats
 
 """
 作业要求
@@ -92,8 +94,7 @@ def generateRandomData(**kwargs):
     return result
 
 
-if __name__ == '__main__':
-    tracemalloc.start()
+def main():
     data = {
         "num": 10000,
         "struct": {
@@ -101,6 +102,13 @@ if __name__ == '__main__':
         }
     }
     generateRandomData(**data)
-    mem = tracemalloc.get_traced_memory()
-    tracemalloc.stop()
-    print(mem, "bytes")
+
+
+if __name__ == '__main__':
+    filename = "res.prof"
+    with cProfile.Profile() as pr:
+        pr.enable()
+        main()
+        ps = pstats.Stats(pr)
+    ps.dump_stats(filename=filename)
+    cli.main([filename])

@@ -1,9 +1,11 @@
 import math
 import random
 from functools import wraps
-import tracemalloc
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import cProfile
+import snakeviz.cli as cli
+import pstats
 
 """
 作业要求
@@ -106,8 +108,7 @@ def generateRandomData(**kwargs):
     return res
 
 
-if __name__ == '__main__':
-    tracemalloc.start()
+def main():
     data = {
         "num": 10,
         "struct": {
@@ -121,7 +122,14 @@ if __name__ == '__main__':
             data["num"] = int(data["num"] * i)
             all_task.append(task)
         for task in as_completed(all_task):
-            current_mem, peak_mem = tracemalloc.get_traced_memory()
-            tracemalloc.stop()
-            print(f"Current memory {current_mem / 10 ** 6}MB; Peak memory {peak_mem / 10 ** 6}MB")
-            tracemalloc.start()
+            print("done")
+
+
+if __name__ == '__main__':
+    filename = "res.prof"
+    with cProfile.Profile() as pr:
+        pr.enable()
+        main()
+        ps = pstats.Stats(pr)
+    ps.dump_stats(filename=filename)
+    cli.main([filename])
