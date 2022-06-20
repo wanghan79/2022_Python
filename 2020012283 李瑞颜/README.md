@@ -10,13 +10,15 @@
 
 - 描述
 
-   ```txt
+  ```txt
   homework1.py 含有3个函数
   	* structDataSampling(**kwargs) 随机生成数据结构
   	* txtFileReader(file) 读取文件
       * apply() 运行structDataSampling方法并打印值
   liry.txt 为外部文本文件
   ```
+
+
 
 ## 第二次作业
 
@@ -26,13 +28,14 @@
 
 - 描述  
 
-
-    funcCollection  
-     	- functions.py 包含4个函数的py文件
-    config.txt  函数的文本表示
-    do.py  含有2个函数  
-    	* txtFileReader(file) 读取文件
-        * callBackFunc(funcList) 执行funcList内的内容
+```txt
+funcCollection  
+ 	- functions.py 包含4个函数的py文件
+config.txt  函数的文本表示
+do.py  含有2个函数  
+	* txtFileReader(file) 读取文件
+    * callBackFunc(funcList) 执行funcList内的内容
+```
 
 
 
@@ -63,15 +66,15 @@
 
 在平时作业三基础上，采用生成器方式生成相应随机数。
 
-- 为什么第三次作业使用函数修饰器，结课作业使用类修饰器
 
-   通过一系列查阅，在进行第三次作业时，实现了较容易理解的嵌套函数修饰器，但是函数嵌套显得很冗余。在进行结课作业编写时，通过将return 改为 yield 后，出现了一些列bug，如object of type 'generator' has no len()，以及输出值恒0为或1。在进行询问与参考后，对循环部分进行修改，同时更改为更加紧凑的类修饰器
 
 - 描述
 
+   通过一系列查阅，在进行第三次作业时，实现了较容易理解的嵌套函数修饰器，但是函数嵌套显得很冗余。在进行结课作业编写时，通过将return 改为 yield 后，出现了一些列bug，如object of type 'generator' has no len()，以及输出值恒0为或1。在进行询问与参考后，对循环部分进行修改，同时更改为更加紧凑的类修饰器。
+
   ```txt
   finalWork.py 含有一个类修饰器，一个随机数据结构生成器
-  	* ResultAnalysis  
+  	* ResultAnalysis 类
   		# __init__(self, func) 构造函数
   		# __call__(self, **kwargs) 在函数内部调用func，将kwargs传入func
   		# dataGenerate(self,data) 由于yield返回的是可迭代对象，所以我们无法多次使用数据，故需要先迭代可迭代对象将数据保存起来
