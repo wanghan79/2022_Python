@@ -1,0 +1,22 @@
+第一次平时作业：编写一个函数，生成给定个数的数据结构的随机数据，要求使用关键字参数给定数据结构，并从外部文本文件中读取相应数据结构的字典作为关键字参数传入函数
+
+运行方式：运行测试文件test.py
+
+文件说明：
+1.Random_Generator_Funciton.py：用函数写的生成给定范围（长度）的随机数/字符串的py文件
+2.Random_Generator_Function_Decorator.py：用函数+修饰器写的生成给定范围（长度）的随机数/字符串的py文件
+3.Random_Generator_Class_Decorator.py：用类+修饰器写的生成给定范围（长度）的随机数/字符串的py文件
+4.test.py：测试上述三个py文件
+5.data.txt：给定个数的数据结构,其中第一行是个数，第二行是int类型和范围，第三号是float类型和范围，第四行是str类型、字符范围和长度
+'''
+5
+int 0 100
+float 0 10000
+str abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&* 50
+'''
+特别说明：
+test.py中的test1测试的是Random_Generator_Funciton.py，test2测试的是Random_Generator_Function_Decorator.py，test3测试的是Random_Generator_Class_Decorator.py，这三个测试的数据均来自于data.txt
+
+程序功能介绍：
+1.在修饰时传入参数，传入的参数都需要在txt文件中写好，以便调用，其中需要的参数主要包括生成随机数的个数，生成随机数的类型，生成随机数的范围（对int或float类型来说），每个随机字符串的长度（对str类型来说，如果是int或float类型，该参数用无意义字符替代），可以通过查看data.txt文件中的数据结构类型和内容更加详细地了解传入参数的内容
+2.本作业的核心程序均有较为严格的异常处理机制，对于各类异常都有较好的把控，准确区分各类异常并向用户反馈信息
