@@ -1,0 +1,2 @@
+{"num":2,"struct":{"int": {"datarange": (0,10)},"str": {"datarange":string.ascii_letters,"len": 8}}}
+{"num":3,"struct":{"float": {"datarange": (0,10)},"str": {"datarange":string.ascii_letters,"len": 8}}}
