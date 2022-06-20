@@ -50,9 +50,9 @@ do.py  含有2个函数
   ```txt
   homework3.py 含有三个函数
   	* Decorator(level) 函数修饰器，根据level选择ACC修饰或MCC修饰，含有3个子函数
-             # ACC(data) 计算ACC
-             # MCC(data) 计算MCC
-             # wrap1(func) 嵌套函数，在得到原函数的结果后，根据level为ACC或MCC计算并得出结果
+             	# ACC(data) 计算ACC
+             	# MCC(data) 计算MCC
+             	# wrap1(func) 嵌套函数，在得到原函数的结果后，根据level为ACC或MCC计算并得出结果
   	* structDataSampling_ACC(**kwargs) 使用ACC修饰的随机数据结构生成器
   	* structDataSampling_MCC(**kwargs) 使用MCC修饰的随机数据结构生成器
   	      
@@ -79,7 +79,7 @@ do.py  含有2个函数
   		# __call__(self, **kwargs) 在函数内部调用func，将kwargs传入func
   		# dataGenerate(self,data) 由于yield返回的是可迭代对象，所以我们无法多次使用数据，故需要先迭代可迭代对象将数据保存起来
       	        # ACC(self, TP, TN, FP, FN) 计算ACC
-                # MCCMCC(self, TP, TN, FP, FN) 计算MCC
+               # MCCMCC(self, TP, TN, FP, FN) 计算MCC
         * structDataSampling(**kwargs) 随机数据结构生成器
   ```
 
