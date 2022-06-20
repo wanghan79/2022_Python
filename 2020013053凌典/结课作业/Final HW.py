@@ -119,6 +119,8 @@ def main():
         all_task = []
         for i in range(2, 6):
             task = pool.submit(generateRandomData, **data)
+            global TP, TN, FP, FN
+            TP = TN = FP = FN = 0
             data["num"] = int(data["num"] * i)
             all_task.append(task)
         for task in as_completed(all_task):
