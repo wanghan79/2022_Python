@@ -1,5 +1,5 @@
 """
-     Author  : Jiaxuan Jiang
+     Author  : Ruiyan Li
      File    : finalWork.py
      describe: 实现2个修饰器ACC和MCC，对模拟二分类预测结果的精度和马修相关系数进行计算，其中模拟预测结果采用随机数生成函数作为被修饰函数，采用生成器方式生成相应随机数
 """
