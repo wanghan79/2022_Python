@@ -1,3 +1,1 @@
-int datarange 0 100
-float datarange -100 100
-str datarange ABCDEFGIJKLNOSADSIHCOZ len 100
+{"num":100,"struct":{"int":{"datarange":(-100,100)},"float":{"datarange":(0,100)},"str":{"datarange":string.ascii_uppercase,"len":100}}}
