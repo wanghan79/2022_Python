@@ -62,10 +62,6 @@ def Result_Analysis(static):
 
 @Result_Analysis("ACC")
 def structDataSampling_ACC(**kwargs):
-    """
-    :param kwargs:
-    :return:
-    """
     result = list()
     for index in range(kwargs['num']):
         for key, value in kwargs['struct'].items():
