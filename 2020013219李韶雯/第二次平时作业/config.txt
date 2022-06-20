@@ -1,0 +1,4 @@
+funcs.funca( )
+funcs.funcc( )
+funcs.funcb( )
+funcs.funcd( )
