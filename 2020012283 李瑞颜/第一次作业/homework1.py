@@ -2,6 +2,7 @@
     @Author  : Ruiyan Li
     @FIle    : homework1.py
     @Software: PyCharm
+    @Describe: 编写一个函数，生成给定个数的数据结构的随机数据，要求使用关键字参数给定数据结构，并从外部文本文件中读取相应数据结构的字典作为关键字参数传入函数
 """
 
 import random
