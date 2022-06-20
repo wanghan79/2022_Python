@@ -1,0 +1,15 @@
+[
+    [ "defun", "cal_gcd", [ "a", "b" ],
+        [ "cond",
+            [ [ "eql", "b", 0 ], [ "a" ] ],
+            [ "t", [ "cal_gcd", "b", [ "mod", "a", "b" ] ] ]
+        ]
+    ],
+    [ "write", "\r计算最大公约数" ],
+    [ "let", [
+        [ "a", [ "readInt", "\r输入数字A:\n" ] ],
+        [ "b", [ "readInt", "\r输入数字B:\n" ] ]
+    ] ],
+    [ "write", "\rgcd(a, b):" ],
+    [ "write", [ "cal_gcd", "a", "b" ] ]
+]
