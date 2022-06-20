@@ -1,7 +1,19 @@
 import random
 import math
 
-def ACC(self, func):
+class Decorator:
+    def __init__(self, static):
+        self.__static = static
+
+    def __call__(self, func):
+        if func is None:
+            return None
+        if self.__static == "ACC":
+            return self.ACC(func)
+        elif self.__static == "MCC":
+            return self.MCC(func)
+
+    def ACC(self, func):
         def wrapper(num, **kwargs):
             result = func(num, **kwargs)
             cnt = 0
@@ -14,7 +26,7 @@ def ACC(self, func):
 
         return wrapper
 
-def MCC(self, func):
+    def MCC(self, func):
         def wrapper(num, **kwargs):
             result = func(num, **kwargs)
             TP = FN = FP = TN = 0
@@ -32,9 +44,9 @@ def MCC(self, func):
             return result
 
         return wrapper
-    
 @Decorator("MCC")
-@Decorator("ACC")
+@Decorator("ACC")  
+
 def structDataSampling(num, **kwargs):
     result = list()
     for index in range(0, num):
