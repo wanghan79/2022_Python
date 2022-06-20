@@ -14,7 +14,7 @@
   homework1.py 含有3个函数
   	* structDataSampling(**kwargs) 随机生成数据结构
   	* txtFileReader(file) 读取文件
-      * apply() 运行structDataSampling方法并打印值
+        * apply() 运行structDataSampling方法并打印值
   liry.txt 为外部文本文件
   ```
 
@@ -34,7 +34,7 @@ funcCollection
 config.txt  函数的文本表示
 do.py  含有2个函数  
 	* txtFileReader(file) 读取文件
-    * callBackFunc(funcList) 执行funcList内的内容
+        * callBackFunc(funcList) 执行funcList内的内容
 ```
 
 
