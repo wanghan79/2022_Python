@@ -1,4 +1,3 @@
-
 import random
 import string
 
@@ -24,5 +23,6 @@ def Node(**text):
 
 file = open("hw1.txt",'r')
 rf = file.read()
+file.close()
 f = eval(rf)
 printf(Node(**f))
