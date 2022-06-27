@@ -1,60 +1,60 @@
-#-*- coding: UTF-8 -*-
 import random
 import string
-
-
-def structDataSampling(**kwargs):
-    """
-
-    :param num: 生成随机数的个数
-    :param kwargs: 字典类型的结构体
-    :return: 随机生成的结构
-    """
+def generateRandom(**kargs):
     result = list()
-    for index in range(0,kwargs["num"]):
+    num = kargs["num"]
+    struct = kargs["struct"]
+    for i in range(num):
         element = list()
-        for key,value in kwargs["struct"].items():
+        for key, val in struct.items():
             if key == "int":
-                it = iter(value['datarange'])
-                tmp = random.randint(next(it),next(it))
+                it = iter(val["range"])
+                element.append(random.randint(next(it), next(it)))
             elif key == "float":
-                it = iter(value['datarange'])
-                tmp = random.uniform(next(it),next(it))
+                it = iter(val["range"])
+                element.append(random.uniform(next(it), next(it)))
             elif key == "str":
-                tmp = ''.join(random.SystemRandom().choice(value['datarange']) for _ in range(value['len']))
-            else :
-                break
-            element.append(tmp)
+                strRange = val["range"]
+                strLength = val["length"]
+                string = ""
+                for j in range(strLength):
+                    string += random.choice(strRange)
+                element.append(string)
+            else:
+                element.append("未知类型")
         result.append(element)
     return result
+argument = {"num":5, "struct":{"int":{"range":(10,20)}, "float":{"range":(100,200)}, "str":{"range":string.ascii_uppercase, "length":10}}}
 
 
-def txtFileReader(file):
-    lstfiles = []
-    with open(file) as f:
-        for line in f:
-            lstfiles.append(line)
-    f.close()
-    return lstfiles
-
-
-
-def apply():
-    struct = txtFileReader('data.txt')
-    # print(struct)
-    # struct = {"int": {"datarange": (0,10)},
-    #           "str": {"datarange":string.ascii_letters,"len": 8}}
-    # result = structDataSampling(2,**struct)
-    # for item in result:
-    #     print(item)
-    for item in struct:
-        # print(item)
-        user_dict = eval(item)
-        # print(user_dict)
-        result = structDataSampling(**user_dict)
-        print(result)
-
-
-
-apply()
+with open("myStruct.txt", "r") as f:
+    structText = f.readlines()
+num = int(structText[0].split()[0])
+cin = {}
+cin["num"] = num
+struct = {}
+for line in structText:
+    words = line.split()
+    dataType = words[0]
+    if dataType == "int":
+        info = {}
+        left = int(words[1]); right = int (words[2])
+        info["range"] = (left, right)
+        struct["int"] = info
+    elif dataType == "float":
+        info = {}
+        left = float(words[1]); right = float(words[2])
+        info["range"] = (left, right)
+        struct["float"] = info
+    elif dataType == "str":
+        info = {}
+        info["range"] = words[1]
+        info["length"] = int(words[2])
+        struct["str"] = info
+    else:
+        continue
+cin["struct"] = struct
+ans = generateRandom(**cin)
+for elem in ans:
+    print(elem)
 

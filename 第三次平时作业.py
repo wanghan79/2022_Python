@@ -1,97 +1,70 @@
-"""
-    Author:  Jiang
-    Purpose: pass.
-    Created: 6/19/2022
-"""
-
+import math
 import random
-from math import sqrt
+from functools import wraps
 
 
-class resultAnalysis(object):
-    def __init__(self, func, static):
-        self.__func = func
-        self.__static = static
 
-    def __call__(self, *args, **kwargs):
-        results = self.__func(*args, **kwargs)
-        if results is None:
-            raise Exception("Error! Generated data is None.")
-        if self.__static == "ACCPrediction":
-            return self.ACC(results)
-        elif self.__static == "MCCPrediction":
-            return self.MCC(results)
+def decorateWith(flag):
+    def decorator(func):
+        wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            total = len(result)
+            TP = TN = FP = FN = 0
+            for e in result:
+                if (e[0] is True) and (e[1] is True):
+                    TP += 1
+                elif (e[0] is True) and (e[1] is False):
+                    FN += 1
+                elif (e[0] is False) and (e[1] is True):
+                    FP += 1
+                elif (e[0] is False) and (e[1] is False):
+                    TN += 1
+                else:
+                    pass
+            if flag == "ACC":
+                acc = (TP + TN) / total
+                print("ACC : %f" % acc)
+            elif flag == "BCC":
+                denominator = math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
+                bcc = (TP * TN - FP * FN) / denominator
+                print("BCC : %f" % bcc)
+            else:
+                pass
+            return result
+        return wrapper
+    return decorator
 
-    def ACC(self, data):
-        print("This is Acc:")
-        result = 0
-        truePositive = trueNegative = falsePositive = falseNegative = 0
-        for item in data:
-            if item[0] & item[1]:
-                truePositive += 1
-            elif item[0] & ~item[1]:
-                trueNegative += 1
-            elif ~item[0] & item[1]:
-                falsePositive += 1
-            elif ~item[0] & ~item[1]:
-                falseNegative += 1
-        result = (truePositive + trueNegative) / (truePositive + trueNegative + falsePositive +falseNegative)
-        return result
-
-    def MCC(self, data):
-        print("This is Mcc:")
-        result = 0
-        truePositive = trueNegative = falsePositive = falseNegative = 0
-        for item in data:
-            if item[0] & item[1]:
-                truePositive += 1
-            elif item[0] & ~item[1]:
-                trueNegative += 1
-            elif ~item[0] & item[1]:
-                falsePositive += 1
-            elif ~item[0] & ~item[1]:
-                falseNegative += 1
-        result = (trueNegative * trueNegative - falsePositive * falseNegative) / sqrt((truePositive + falsePositive) * (truePositive + falseNegative) * (trueNegative + falsePositive) * (trueNegative + falseNegative))
-        return result
-
-
-def ResultAnalysis(func, static):
-    def wrapper(function):
-        return resultAnalysis(function, static)
-
-    return wrapper
-
-
-@ResultAnalysis("ACC", "ACCPrediction")
-def ACCDataSampling(**kwargs):
-    data = list()
-    for index in range(0, kwargs['count']):
+@decorateWith("BCC")
+@decorateWith("ACC")
+def generateRandom(**kargs):
+    result = list()
+    num = kargs["num"]
+    struct = kargs["struct"]
+    for i in range(num):
         element = list()
-        for item in range(0, kwargs['num']):
-            for key, value in kwargs['struct'].items():
-                if key == 'bool':
-                    element.append(eval(value))
-        data.append(element)
-    return data
+        for key, val in struct.items():
+            if key == "int":
+                it = iter(val["range"])
+                element.append(random.randint(next(it), next(it)))
+            elif key == "float":
+                it = iter(val["range"])
+                element.append(random.uniform(next(it), next(it)))
+            elif key =="str":
+                strRange = val["range"]
+                strLength = val["length"]
+                string = ""
+                for j in range(strLength):
+                    string+=random.choice(strRange)
+                element.append(string)
+            elif key == "bool":
+                for ith in range(val["num"]):
+                    element.append(random.choice((True, False)))
+            else:
+                element.append("未知类型")
+        result.append(element)
+    return result
 
 
-
-@ResultAnalysis("MCC", "MCCPrediction")
-def MCCDataSampling(**kwargs):
-    data = list()
-    for index in range(0, kwargs['count']):
-        element = list()
-        for item in range(0, kwargs['num']):
-            for key, value in kwargs['struct'].items():
-                if key == 'bool':
-                    element.append(eval(value))
-        data.append(element)
-    return data
-
-
-acc_struct = {'count': 10000, 'num': 3, 'struct': {'bool': 'random.choice([True, False])'}}
-acc = ACCDataSampling(**acc_struct)
-print(acc)
-mcc_struct = {'count': 10000, 'num': 3, 'struct': {'bool': 'random.choice([True, False])'}}
-mcc = MCCDataSampling(**acc_struct)
-print(mcc)
+argument = {"num": 10000, "struct": {"bool": {"num": 2}}}
+resultList = generateRandom(**argument)
